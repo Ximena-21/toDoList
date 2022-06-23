@@ -1,0 +1,60 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(243, 221, 243);
+}
+
+h1{
+    font-family:Verdana, Geneva, Tahoma, sans-serif ;
+    color: rgb(114, 114, 114);
+    text-shadow: 1px 0.5px rgba(16, 16, 16, 0.844);
+    font-size: 24px;
+    padding-bottom: 15px;
+}
+.containerPpal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.entryTask{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.buttonAdd{
+    outline: none;
+    background-color: rgb(107, 77, 102);
+    border: 0.5px groove rgb(114, 114, 114);
+    padding: 5px;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.buttonAdd:hover{
+    background-color:  rgb(150, 103, 142);
+}
+
+.inputTask{
+    outline: none;
+    border-radius: 2px;
+    border: 1px solid rgb(114, 114, 114);
+    padding: 5px;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 14px;
+   
+}
+
