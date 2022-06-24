@@ -1,11 +1,13 @@
 
 const btnAdd = document.querySelector('.buttonAdd');
 const containerTasks = document.querySelector('.containerTasks');
-
-
+let todoList = []
+// const existeBotones = false
 
 //funcion que me agregue la tarea ingresada por el usuario
 function addTask () {
+
+    console.log(todoList)
     
     const task = document.querySelector('.inputTask').value;
     
@@ -14,8 +16,19 @@ function addTask () {
     if (task === '') {
         alert('Ingrese una tarea')
      } else {
-        renderTask(task);
-        addGeneralButtons();
+
+
+        const newTodo = {
+            terminado: false,
+            texto: task
+        }
+
+        todoList.push(newTodo)
+
+        //si la lista de toods == 2 (crear los botones) // (quitarle el hidden por que ya existian en el html)
+
+        renderTask(newTodo);
+        // addGeneralButtons();
         clearEntry();
     };
 };
@@ -24,7 +37,7 @@ btnAdd.addEventListener('click',addTask)
 
 
 //funcion que renderice cada tarea y sus funciones
-function renderTask (element) {
+function renderTask (task) {
 
     //crear una caja que contenga toda la pregunta, con sus botones
     const boxTask = document.createElement('div');
@@ -32,12 +45,9 @@ function renderTask (element) {
 
     const content = `
         <input type="checkbox" name="checkbox" class="check" id="btnselect">
-        <span class='textTask'>${element}</span>
+        <span class='textTask'>${task.texto}</span>
         <button class='delete'>x</button>
     `
-  /*   <input type="checkbox" name="my-checkbox" id="opt-in">
-  <label for="opt-in">Check me!</label> */
-
 
     boxTask.innerHTML = content;
     containerTasks.appendChild(boxTask);
@@ -53,11 +63,20 @@ function renderTask (element) {
 
     //funcion que checkee la tarea indicada
     function checkTask () {
-        //identificar a quien selecciono
         const selectedTask = btnCheck.nextElementSibling;
         
-        //a ese que selecciono cambie estilo y rayelo
-        selectedTask.style.textDecoration = "line-through";  
+        if (btnCheck.checked === true) {
+            //identificar a quien selecciono
+            //a ese que selecciono cambie estilo y rayelo
+            selectedTask.style.textDecoration = "line-through";  
+            
+        } else {
+
+            selectedTask.style.textDecoration = "none"; 
+        }
+        // console.dir(btnCheck)
+        // task.terminado = true
+        
 
         //hacer que se checke y no se checkee revisar toggle
     };
@@ -66,10 +85,24 @@ function renderTask (element) {
     function deleteTask () {
     
         //identificar el padre de quien le estoy dando click para eliminarlo
-       const deleteSelec = btnDelete.parentElement;
-       deleteSelec.remove(); 
+    //    const deleteSelec = btnDelete.parentElement;
+
+        //crear una nva lista sin el elemento seleccionado, es decir lo eleimina
+        const filter = todoList.filter((_task)=>{
+
+        const condicion = _task.texto != task.texto;
+        return condicion
+       })
+
+       todoList = filter;
+    //    console.log(filter)
+
+       //hace sinbcronzacion visual, 
+       boxTask.remove(); 
     };
   
+
+    // return boxTask
     // if (/* containerTasks ya tiene mas hijos de 1 >1  */) {/*cree el div con los buttons*/}
  
     // const boxButtons = document.createElement('div');
@@ -99,8 +132,6 @@ function addGeneralButtons () {
         console.log('no aparecen')
     } */
 }; 
-
-
 
 
 
