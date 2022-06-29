@@ -24,10 +24,10 @@ function addTask () {
             terminado: false,
             texto: task
         }
-
+        
         todoList.push(newTodo);
-        renderTask(newTodo);
         clearEntry();
+        renderTask(newTodo);
     };
     
 };
