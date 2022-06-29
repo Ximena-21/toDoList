@@ -25,14 +25,28 @@ function addTask () {
             texto: task
         }
 
-        todoList.push(newTodo)
+        todoList.push(newTodo);
         renderTask(newTodo);
         clearEntry();
-        
     };
+    
 };
 
-btnAdd.addEventListener('click',addTask)
+
+/* btnAdd.addEventListener('click',addTask);
+btnAdd.addEventListener('keydown',handleEvent ); */
+
+['click','keydown'].forEach((ev)=>{
+    btnAdd.addEventListener(ev,handleEvent);
+})
+
+function handleEvent (evento) {
+    if((/* evento.type === 'keydown' && */ evento.key == 'Enter') || evento.type === 'click' ){
+        // console.log('presiono enter');
+        addTask();
+        
+    } 
+};
 
 
 //funcion que renderice cada tarea y sus funciones
@@ -45,11 +59,12 @@ function renderTask (task) {
     const content = `
         <input type="checkbox" name="checkbox" class="check" id="btnselect">
         <span class='textTask'>${task.texto}</span>
-        <button class='delete'>x</button>
+        <button class='delete'></button>
     `
 
     boxTask.innerHTML = content;
     containerTask.appendChild(boxTask);
+
 
     //obtener los botones para asiganrles su funcion
     const btnCheck = boxTask.querySelector('.check');
@@ -58,6 +73,19 @@ function renderTask (task) {
     btnCheck.addEventListener('click', checkTask);
     btnDelete.addEventListener('click',deleteTask);
     
+     //hacer que se guarde la informacion de las tareas en el navegador, al duplicar pantallas
+
+     //guardar las tareas en una variable, como no hay nada aun ene el localStorage, se guardar en una matriz vacia 
+
+    localStorage.setItem(boxTask,texTask)
+
+
+    // let taskStorage = localStorage.getItem('boxTask') ? JSON.parse(localStorage.getItem('boxTask')) : [];
+
+    // localStorage.setItem("boxTask", JSON.stringify(taskStorage));
+
+
+
     //uso de condicional, para que solo cuando hayan mas de dos tareas, aparezacn los botones generales y sus funciones
         if (todoList.length == 2){
             
@@ -66,8 +94,8 @@ function renderTask (task) {
             boxButtons.className = 'boxButtons';
             
             const generalButtons = `
-                <button class='deleteButton'>deleteAll</button>
-                <button class='selectButton'>selectAll</button>
+                <button class='selectButton  btnAll'>Check</button>
+                <button class='deleteButton btnAll'>Delete</button>
             `
             boxButtons.innerHTML = generalButtons;
             containerButtons.appendChild(boxButtons);
@@ -80,7 +108,7 @@ function renderTask (task) {
             
 
             function deleteAll () {
-
+//PREGUNTAR: porque al usar el forEach no se ejecuta y con el while si
                 /* todoList.forEach((eliminado)=>{
                     const eliminar = todoList.pop(eliminado);
                     console.log(eliminar)

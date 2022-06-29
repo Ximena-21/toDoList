@@ -25,7 +25,7 @@ h1{
 
 .containerPpal{
     width: 90%;
-    max-width: 450px;
+    max-width: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,34 +41,83 @@ h1{
 
 .task{
     width: 80%;
-    max-width: 400px;
+    max-width: 600px;
     display: flex;
     gap: 10px;
     flex-direction: column;
 }
 
-.buttonAdd, button{
+.btnAll{
     outline: none;
-    background-color: rgb(107, 77, 102);
+    /* width: 30px; */
+    border-radius: 30PX;
+    /* background-color: rgb(52 13 45); */
     border: 0.5px groove rgb(114, 114, 114);
     padding: 5px;
-    border-radius: 2px;
-    font-size: 14px;
     cursor: pointer;
+    padding: 8px 12px;
+    border-style: none;
+    border: 1px solid rgb(52 13 45);
+    color: rgb(52 13 45);
+    box-shadow: 0px 1px 2px 0px rgb(52 13 45);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btnAll:hover{
+    background-color: #340d2d;
+    color:aliceblue;
+}
+
+
+
+.buttonAdd{
+    outline: none;
+    width: 30px;
+    border-radius: 30PX;
+    border: none;
+    /* background-color: rgb(180, 101, 166); */
+    /* border: 0.5px groove rgb(114, 114, 114); */
+    /* padding: 5px; */
+    /* font-size: 14px; */
+    cursor: pointer;
+    /* background: black url(https://api.iconify.design/ion/add-circle-outline.svg?color=%23b464a6) no-repeat center center / contain; */
+    background:  url('https://api.iconify.design/ion/add-circle.svg?color=%23340d2d') no-repeat center center / contain;
 }
 
 .buttonAdd:hover{
-    background-color:  rgb(150, 103, 142);
+    background-color: rgb(177 132 169);
 }
+
+/* input[type="checkbox"] {
+    display: grid;
+    place-content: center;
+  }
+  
+  input[type="checkbox"]::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+  }
+  
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  } */
+
+/* .boxTask input:checked ~ .delete{
+    background-color: black;  
+} */
 
 .inputTask{
     outline: none;
-    border-radius: 2px;
-    border: 1px solid rgb(114, 114, 114);
-    padding: 5px;
-    font-family:'Courier New', Courier, monospace;
+    border-radius: 15px;
+    border: 1px solid #340d2d;
+    padding: 5px 15px;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
-   
 }
 
 .containerTasks{
@@ -110,13 +159,24 @@ h1{
 
 .delete{
     outline: none;
-    width: 6%;
-    max-width: 20px;
-    height: 70%;
-    max-height: 20px;
+    width: 20px;
+    max-width: 30px;
+    height: 30px;
+    max-height: 40px;
     background-color: rgb(107, 77, 102);
-    border: 0.5px groove rgb(114, 114, 114);
-    padding: 0px 3px;
-    border-radius: 2px;
+    border: none;
+    /* padding: 0px 3px; */
+    /* border-radius: 2px; */
     cursor: pointer;
+    background: url(https://api.iconify.design/ion/trash.svg?color=%23340d2d) no-repeat center center / contain;
+}
+
+.boxButtons {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
