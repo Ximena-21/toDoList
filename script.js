@@ -4,6 +4,7 @@ const containerTasks = document.querySelector('.containerTasks')
 const containerTask = document.querySelector('.task');
 const containerButtons = document.querySelector('.buttons');
 let todoList = []
+const inputTask = document.querySelector('.inputTask');
 // const existeBotones = false
 
 //funcion que me agregue la tarea ingresada por el usuario
@@ -11,8 +12,7 @@ function addTask () {
 
     console.log(todoList)
     
-    const task = document.querySelector('.inputTask').value;
-    
+    const task = inputTask.value;
     //condicional, cuando el input este vacio no se ejecute funcion, sino 
     //envie un alert al ususario 
     if (task === '') {
@@ -33,15 +33,14 @@ function addTask () {
 };
 
 
-/* btnAdd.addEventListener('click',addTask);
-btnAdd.addEventListener('keydown',handleEvent ); */
+btnAdd.addEventListener('click',addTask);
+//le agg el evento al input, para que la presionar la tecla 'enter' ingrese la tarea
+inputTask.addEventListener('keydown',handleEvent);
 
-['click','keydown'].forEach((ev)=>{
-    btnAdd.addEventListener(ev,handleEvent);
-})
 
+//funcion que apartir de identificar si la tecla que se presiono es igual a la que quiero se ejecute la funcion addTask
 function handleEvent (evento) {
-    if((/* evento.type === 'keydown' && */ evento.key == 'Enter') || evento.type === 'click' ){
+    if(evento.key === 'Enter'){
         // console.log('presiono enter');
         addTask();
         
@@ -51,29 +50,30 @@ function handleEvent (evento) {
 
 //funcion que renderice cada tarea y sus funciones
 function renderTask (task) {
-
+    
     //crear una caja que contenga toda la pregunta, con sus botones
     const boxTask = document.createElement('div');
     boxTask.className = 'boxTask';
-
+    
     const content = `
-        <input type="checkbox" name="checkbox" class="check" id="btnselect">
-        <span class='textTask'>${task.texto}</span>
-        <button class='delete'></button>
+    <input type="checkbox" name="checkbox" class="check" id="btnselect">
+    <span class='textTask'>${task.texto}</span>
+    <button class='delete'></button>
     `
-
+    
     boxTask.innerHTML = content;
     containerTask.appendChild(boxTask);
-
-
+    
+    
     //obtener los botones para asiganrles su funcion
     const btnCheck = boxTask.querySelector('.check');
     const btnDelete = boxTask.querySelector('.delete');
-    
+
     btnCheck.addEventListener('click', checkTask);
     btnDelete.addEventListener('click',deleteTask);
     
-     //hacer que se guarde la informacion de las tareas en el navegador, al duplicar pantallas
+    
+    //hacer que se guarde la informacion de las tareas en el navegador, al duplicar pantallas
 
      //guardar las tareas en una variable, como no hay nada aun ene el localStorage, se guardar en una matriz vacia 
 
