@@ -77,7 +77,7 @@ function renderTask (task) {
 
      //guardar las tareas en una variable, como no hay nada aun ene el localStorage, se guardar en una matriz vacia 
 
-    localStorage.setItem(boxTask,texTask)
+    /* localStorage.setItem(boxTask,texTask) */
 
 
     // let taskStorage = localStorage.getItem('boxTask') ? JSON.parse(localStorage.getItem('boxTask')) : [];
