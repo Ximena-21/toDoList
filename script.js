@@ -169,8 +169,8 @@ function generateButtons () {
     boxButtons.className = 'boxButtons';
     
     const generalButtons = `
-        <button class='selectButton  btnAll'>Check</button>
-        <button class='deleteButton btnAll'>Delete</button>
+        <button class='selectButton  btnAll'>Check All</button>
+        <button class='deleteButton btnAll'>Delete All</button>
     `
     boxButtons.innerHTML = generalButtons;
     containerButtons.appendChild(boxButtons);
@@ -212,7 +212,10 @@ function generateButtons () {
             const texTask = button.nextElementSibling;
             texTask.style.textDecoration = "line-through";
             // console.log(texTask);
-    
+        })
+
+        todoList.forEach(task =>{
+            task.terminado = true
         })
         //FALTA : hacer que al darle click los desraye
 
