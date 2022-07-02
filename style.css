@@ -4,6 +4,9 @@
     margin: 0;
 }
 
+button:focus{
+    background-color: rebeccapurple;
+}
 
 body{
     width: 100%;
