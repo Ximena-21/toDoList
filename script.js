@@ -6,6 +6,7 @@ const containerButtons = document.querySelector('.buttons');
 const inputTask = document.querySelector('.inputTask');
 
 const existsLocalStorageData = localStorage.hasOwnProperty('todoList')
+let todoAllStateCheked = false
 
 let todoList = existsLocalStorageData ? JSON.parse(localStorage.getItem('todoList')) : []
 
@@ -100,6 +101,13 @@ function renderTask (task) {
     //obtener los botones para asiganrles su funcion
     const btnCheck = boxTask.querySelector('.check');
     const btnDelete = boxTask.querySelector('.delete');
+    const checkbox = boxTask.querySelector('.check')
+    const textTask = boxTask.querySelector('.textTask')
+    checkbox.checked = task.terminado
+
+
+    if(task.terminado) textTask.style.textDecoration = "line-through";
+    else textTask.style.textDecoration = "none";
 
     btnCheck.addEventListener('click', checkTask);
     btnDelete.addEventListener('click',deleteTask);
@@ -202,22 +210,29 @@ function generateButtons () {
 
     //funcion que me selecicone todas las tareas
     function selectAll () {
+
+        todoAllStateCheked = !todoAllStateCheked
+        console.log(todoAllStateCheked)
+
+        todoList.forEach(task =>{
+            task.terminado = todoAllStateCheked
+        })
+
+
         //llamo todos los botones check que en ese momento tengo en mi documento
         const listChecks = document.querySelectorAll('.check');
         //los itero como un array y accedo a cada boton, y cambio su estado de propiedad .checked (me checkea los buttons)
         //accedo a cada hermano del boton y lo rayo
         listChecks.forEach((button)=>{
             // console.dir(button);
-            button.checked = true;
-            const texTask = button.nextElementSibling;
-            texTask.style.textDecoration = "line-through";
-            // console.log(texTask);
-        })
+            button.checked = todoAllStateCheked;
 
-        todoList.forEach(task =>{
-            task.terminado = true
+            const texTask = button.nextElementSibling;
+
+            if(todoAllStateCheked) texTask.style.textDecoration = "line-through";
+            else texTask.style.textDecoration = "none";
+
         })
-        //FALTA : hacer que al darle click los desraye
 
         syncLocalStorage()
     };
